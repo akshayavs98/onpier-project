@@ -1,0 +1,171 @@
+<mat-toolbar style="align-items: initial;">
+    <div class="name me-auto" routerLink="/dashboard"> <mat-icon>home</mat-icon></div>
+    <div class="name"> <mat-icon>account_circle</mat-icon><span class="margin" routerLink="/new-profile">My Profile</span></div>
+    <div class="name" style="margin-left:1rem"><mat-icon >logout</mat-icon><span class="margin" (click)="authService.SignOut()">Log out</span></div>
+</mat-toolbar>
+<div class="add">
+    <mat-horizontal-stepper>
+        <mat-step label="Car Details">
+            <p style="font-size: 1.2rem;">Enter the car details</p>
+            <div class="container">
+                <form [formGroup]="carFormGroup" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="brand">Brand: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="brand" type="text" formControlName="brand" [(ngModel)]="carDetails.brand">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="model">Model: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="model" type="text" formControlName="model" [(ngModel)]="carDetails.model">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="km">KM: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="km" type="text" formControlName="km"  (keypress)="calculateInsurance($event,'km')" (keydown)="calculateInsurance($event,'km')" [(ngModel)]="carDetails.km">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="year">Year: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="year" type="text" formControlName="year"  (keypress)="calculateInsurance($event,'year');" (keydown)="calculateInsurance($event,'year')" maxlength="4" [(ngModel)]="carDetails.year">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="shift">Shift: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="shift" type="text" formControlName="shift"  [(ngModel)]="carDetails.shift">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="fuel">Fuel: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="fuel" type="text" formControlName="fuel" [(ngModel)]="carDetails.fuel">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="color">Color: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="color" type="text" formControlName="color" [(ngModel)]="carDetails.color">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="cartype">Car Type: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="cartype" type="text" formControlName="cartype" [(ngModel)]="carDetails.cartype">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="cartype">E-Car: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <div style="display: inline;">
+                                            <input type="radio" id="yes" name="ecar" formControlName="ecar" value="yes" [(ngModel)]="ecar">
+                                            <label for="yes">&nbsp;Yes</label>
+                                          </div>
+                                      
+                                          <div style="display: inline;">
+                                            <input type="radio" id="no" name="ecar" formControlName="ecar" value="no" [(ngModel)]="ecar">
+                                            <label for="no">&nbsp;No</label>
+                                          </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span>
+                        <button class="submit-btn" routerLink="/dashboard">Back</button>
+                        <button type="submit" class="submit-btn" matStepperNext style="margin-left: 2rem;">Next</button>
+                    </span>
+                </form>
+            </div>
+            
+        </mat-step>
+        <mat-step label="Damaged Record">
+            <p style="font-size: 1.2rem;">Enter the details of damaged part</p>
+            <form [formGroup]="damagedPartForm">
+                <ng-container formArrayName="parts">
+                    <ng-container *ngFor="let part of parts.controls; let i = index">
+                        <div [formGroupName]="i">
+                           <div class = "row">
+                            <div class = "col-30" >
+                                <label>Part of car having damage</label>
+                                <input type="text" formControlName="name">
+                               </div>
+                               <div class="col-30">
+                                <label>Money it cost</label>
+                                <input type="text" formControlName="rate" (keypress)="commonService.onlyNumberKey($event)">
+                               </div>
+                               <div class="col-30">
+                                <mat-icon class="delete-btn" (click)="deletePart(i)">
+                                    delete_forever</mat-icon>
+                               </div>
+                           </div>
+                            
+                        </div>
+                    </ng-container>
+                </ng-container>
+              
+                <button mat-mini-fab (click)="addPart()" class="add-part-btn">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </form>
+            <div>
+                <button class="submit-btn" matStepperPrevious>Back</button>
+                <button class="submit-btn" (click)="addCar()" style="margin-left: 2rem;">Add</button>
+                <p style="color: green;display: inline;margin-left:5px;" *ngIf="addSuccess">Added Successfully</p>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+    <div>
+        <label>Insurance Premium Amount(in Euro): {{carInsurance}} </label>
+    </div>
+</div>

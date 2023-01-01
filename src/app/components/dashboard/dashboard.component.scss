@@ -1,0 +1,75 @@
+.car-detail{
+padding:5rem;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    background-color: #f1f1f1;
+    padding-top: 2rem;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .column {
+    float: left;
+    width: 20%;
+    padding: 0 10px;
+  }
+  
+  .row {margin: 0 -5px;}
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .dropdown {
+    margin-left: 0.5rem;
+    margin-bottom: 2rem;
+    width: 14%;
+    display: inline;
+  }
+  .filter-text{
+    font-size: 1rem;
+    display: inline;
+    margin-top: 1rem;
+  }
+ .clear-text{
+    font-size: 0.95rem;
+    display: inline;
+    margin-top: 1rem;
+    text-decoration: underline;
+    cursor: pointer;
+    color: blue;
+    margin-left:0.5rem;
+ }
+  /* Responsive columns - one column layout (vertical) on small screens */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
+  mat-sidenav {
+    margin: 16px;
+    width: 250px;
+    border-right: none;
+    background: #0878c9;
+    color: white;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    visibility: visible !important;
+    margin-left: 16rem;
+}
+mat-sidenav-container {
+  height: calc(100vh);
+}
+
+
+  

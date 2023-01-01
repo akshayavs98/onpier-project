@@ -1,0 +1,79 @@
+<div>
+    <mat-toolbar style="align-items: initial;">
+        <div class="name me-auto" routerLink="/dashboard"> <mat-icon>home</mat-icon></div>
+        <div class="name"> <mat-icon>account_circle</mat-icon><span class="margin" routerLink="/new-profile">My Profile</span></div>
+        <div class="name" style="margin-left:1rem"><mat-icon >logout</mat-icon><span class="margin" (click)="authService.SignOut()">Log out</span></div>
+    </mat-toolbar>
+   <div class="car-detail">
+            <div>
+                <span><h2>CARS</h2>
+            <input type="button" class="submit-btn" value="Add Car" style="float: right;" routerLink="/add-new-car"></span>
+            </div>
+            <div>
+                <p class="filter-text" >Filter by:</p>
+                <select name="brand" class="form-control dropdown" (change)="applyFilter($event,'brand')">
+                    <option value="" disabled selected hidden>Brand</option>
+                    <option *ngFor="let brand of brandList" value="{{brand}}">{{brand}}</option>  
+                </select>
+                <select name="color" class="form-control dropdown" (change)="applyFilter($event,'color')">
+                    <option value="" disabled selected hidden>Color</option>
+                    <option *ngFor="let color of colorList" value="{{color}}">{{color}}</option>  
+                </select>
+                <select name="brand" class="form-control dropdown" (change)="applyFilter($event,'ctype')">
+                    <option value="" disabled selected hidden>Car Type</option>
+                    <option *ngFor="let type of carTypeList" value="{{type}}">{{type}}</option>  
+                </select>
+                <p class="clear-text" (click)="clearFilter()">Clear filter</p>
+            </div>
+            <div>
+        
+            </div>
+            <div class="row">
+                <div class="column" *ngFor="let car of carDetails">
+                    <div class="card">
+                      <table>
+                        <tr>
+                            <th>Brand</th>
+                            <td>{{ car?.brand }}</td>
+                        </tr>
+                        <tr>
+                            <th>Model</th>
+                            <td>{{ car?.model }}</td>
+                        </tr>
+                        <tr>
+                            <th>KM</th>
+                            <td>{{ car?.km }}</td>
+                        </tr>
+                        <tr>
+                            <th>Year</th>
+                            <td>{{ car?.year }}</td>
+                        </tr>
+                        <tr>
+                            <th>Shift</th>
+                            <td>{{ car?.shift }}</td>
+                        </tr>
+                        <tr>
+                            <th>Fuel</th>
+                            <td>{{ car?.fuel }}</td>
+                        </tr>
+                        <tr>
+                            <th>Color</th>
+                            <td>{{ car?.color }}</td>
+                        </tr>
+                        <tr>
+                            <th>Car Type</th>
+                            <td>{{ car?.cartype }}</td>
+                        </tr>
+                        <tr>
+                            <th>E-Car</th>
+                            <td>{{ car?.ecar }}</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+            </div>
+            
+       
+   </div>
+   </div>
+    

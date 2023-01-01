@@ -1,0 +1,279 @@
+<mat-toolbar style="align-items: initial;">
+    <div class="name me-auto" routerLink="/dashboard"> <mat-icon>home</mat-icon></div>
+    <div class="name"> <mat-icon>account_circle</mat-icon><span class="margin" routerLink="/new-profile">My Profile</span></div>
+    <div class="name" style="margin-left:1rem"><mat-icon >logout</mat-icon><span class="margin" (click)="authService.SignOut()">Log out</span></div>
+</mat-toolbar>
+<div *ngIf="!editClicked">
+    <p class="add">Personal details <mat-icon (click)="editClicked = true" style="margin-left: 2px;cursor: pointer;">edit</mat-icon> </p>
+            <div class="container">
+                <form [formGroup]="profileFormGroup">
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="name">Name: </label>
+                                    </div>
+                                    <div class="col-75">
+                               <label> {{ profileDetails.name ? profileDetails.name : 'NA'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="surname">Surname: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <label> {{ profileDetails.surname ? profileDetails.surname : 'NA'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="gender">Gender: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <label> {{ profileDetails.gender ? profileDetails.gender : 'NA'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="birthday">Birthday: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <label> {{ profileDetails.birthday ? profileDetails.birthday : 'NA'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="status">Marital Status: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <label> {{ profileDetails.marital_status ? profileDetails.marital_status : 'NA'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="job">Job: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <label> {{ profileDetails.job ? profileDetails.job : 'NA'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="ldate">License Date: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <label> {{ profileDetails.license_date ? profileDetails.license_date : 'NA'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="lcountry">License Country: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <label> {{ profileDetails.license_country ? profileDetails.license_country: 'NA'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="code">Zip Code: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <label> {{ profileDetails.zipcode ? profileDetails.zipcode : 'NA'}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                    <div class="col-75">
+                                        <div style="display: inline;">
+                                            <label for="garage">Do you have a garage? </label>
+                                            <label> {{ profileDetails.hasGarage ? 'Yes' : 'No'}}</label>
+                                          </div>
+                                        
+                                          <div style="margin-left:5px;" *ngIf="profileDetails.hasGarage">
+                                            <label>Is it lockable? </label>
+                                            <label> {{ profileDetails.isLockable ? 'Yes' : 'No'}}</label>
+                                          </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span>
+                        <button class="submit-btn" routerLink="/dashboard">Back</button>
+                    </span>
+                </form>
+            </div>
+</div>
+<div *ngIf="editClicked">
+    <p class="add">Enter the personal details</p>
+            <div class="container">
+                <form [formGroup]="profileFormGroup" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="name">Name: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="name" type="text" formControlName="name" class="form-control" [(ngModel)]="profileDetails.name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="surname">Surname: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="surname" type="text" formControlName="surname"  class="form-control"  [(ngModel)]="profileDetails.surname">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="gender">Gender: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="male" type="radio" formControlName="gender"  name="gender" value="Male" [(ngModel)]="profileDetails.gender">
+                                <label for="male">&nbsp;Male</label>
+                                <input id="female" type="radio" formControlName="gender"  name="gender" value="Female"  [(ngModel)]="profileDetails.gender">
+                                <label for="female">&nbsp;Female</label>
+                                <input id="notprefer" type="radio" formControlName="gender"  name="gender" value="NA"  [(ngModel)]="profileDetails.gender">
+                                <label for="notprefer">&nbsp;Not stated</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="birthday">Birthday: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="birthday" type="date" formControlName="birthday"  class="form-control"  [(ngModel)]="profileDetails.birthday">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="status">Marital Status: </label>
+                                    </div>
+                                    <div class="col-75">
+                                        <select name="status" id="status" class="form-control" [(ngModel)]="profileDetails.marital_status">
+                                            <option value="" disabled selected hidden>Select</option>
+                                            <option value="Single">Single</option>  
+                                            <option value="Married">Married</option> 
+                                            <option value="Widowed">Widowed</option> 
+                                            <option value="Divorced">Divorced</option> 
+                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="job">Job: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="job" type="text" formControlName="job"  class="form-control"  [(ngModel)]="profileDetails.job">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="ldate">License Date: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="ldate" type="date" formControlName="ldate" class="form-control"  [(ngModel)]="profileDetails.license_date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="lcountry">License Country: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="lcountry" type="text" formControlName="lcountry"  class="form-control"  [(ngModel)]="profileDetails.license_country">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                <div class="col-25">
+                                    <label for="code">Zip Code: </label>
+                                    </div>
+                                    <div class="col-75">
+                                <input id="code" type="text" formControlName="code" class="form-control" [(ngModel)]="profileDetails.zipcode" (keypress)="commonService.onlyNumberKey($event)" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="row">
+                                    <div class="col-75">
+                                        <div style="display: inline;">
+                                            <label for="garage">Do you have a garage? </label>
+                                            <input type="checkbox" id="yes" name="garage" formControlName="garage" (change)=garageCheck($event) checked="profileDetails.hasGarage">
+                                          </div>
+                                        
+                                          <div style="margin-left:5px;" *ngIf="hasGarage || profileDetails.hasGarage">
+                                            <label>Is it lockable? </label>
+                                            <input type="checkbox" name="lockable"  (change)=lockCheck($event) checked="profileDetails.isLockable">
+                                          </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <label style="color: red;">Data entered will be auto-saved.</label>
+                    <span>
+                        <button class="submit-btn" (click)="editClicked = false">Back</button>
+                    </span>
+                </form>
+            </div>
+</div>

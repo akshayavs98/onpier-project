@@ -1,0 +1,28 @@
+<div class="displayTable">
+    <div class="displayTableCell">
+      <form action="" class="form">
+        <h2>Log In</h2>
+        <div class="formGroup input-group">
+          <input type="text" class="formControl" placeholder="Username" #userName required>
+        </div>
+        <div class="formGroup input-group">
+          <input type="password" class="formControl" placeholder="Password" #userPassword required>
+        </div>
+        <!-- Calling SignIn Api from AuthService -->
+        <div class="formGroup">
+          <input type="button" class="submit-btn" style="color: black;"  value="Log in" (click)="signIn(userName.value, userPassword.value)">
+        </div>
+        <div class="formGroup">
+          <span class="or-text">OR</span>
+        </div>
+        <!-- Calling GoogleAuth Api from AuthService -->
+        <div class="formGroup">
+          <button type="button" class="submit-btn" style="color: black;" (click)="authService.GoogleAuth()">
+            <i class="fab fa-google-plus-g"></i>
+            Log in with Google
+          </button>
+        </div>
+    </form>
+    </div>
+  </div>
+  
